@@ -72,8 +72,6 @@ public class Hotel_Generater {
 					loc.setY(loc.getY() + (loc.getX() + 4) + 1);
 					loc.setY(loc.getY() + (loc.getX() + 5) + 1);
 					loc.setY(loc.getY() + (loc.getX() + 6) + 1);
-					loc.setY(loc.getY() + (loc.getX() + 7) + 1);
-					loc.setY(loc.getY() + (loc.getX() + 8) + 1);
 					loc.setY(loc.getY() + (loc.getX() + 9) + 1);
 					loc.setY(loc.getY() + (loc.getX() + 10) + 1);
 					loc.setY(loc.getY() + (loc.getX() + 11) + 1);
@@ -218,6 +216,7 @@ public class Hotel_Generater {
 					loc.setZ(loc.getZ() + (loc.getX() + 13) + 6);
 					loc.setZ(loc.getZ() + (loc.getX() + 14) + 6);
 					
+					loc.setZ(loc.getZ() + (loc.getX() + 1) + 7);
 					loc.setZ(loc.getZ() + (loc.getX() + 2) + 7);
 					loc.setZ(loc.getZ() + (loc.getX() + 3) + 7);
 					loc.setZ(loc.getZ() + (loc.getX() + 4) + 7);
@@ -232,6 +231,7 @@ public class Hotel_Generater {
 					loc.setZ(loc.getZ() + (loc.getX() + 13) + 7);
 					loc.setZ(loc.getZ() + (loc.getX() + 14) + 7);
 					
+					loc.setZ(loc.getZ() + (loc.getX() + 1) + 8);
 					loc.setZ(loc.getZ() + (loc.getX() + 2) + 8);
 					loc.setZ(loc.getZ() + (loc.getX() + 3) + 8);
 					loc.setZ(loc.getZ() + (loc.getX() + 4) + 8);
@@ -338,14 +338,22 @@ public class Hotel_Generater {
 					World w = loc.getWorld();
 					Block b = w.getBlockAt(loc);
 					b.setTypeId(4);
-					blockCounter++;
+					
+
+					loc.setY(loc.getY() + (loc.getX() + 7) + 1);
+					loc.setY(loc.getY() + (loc.getX() + 8) + 1);
+					b.setTypeId(64);
+					
+					loc.setZ(loc.getZ() + 7);
+					loc.setZ(loc.getZ() + 8);
+					b.setTypeId(53);
 
 				}
 			}
 		}
 		String s = Material.getMaterial(plugin.ID).name();
 		plugin.m.capitaliseFristLetter(s);
-		plugin.m.sendMessage(player,blockCounter+ " Blocks Have Been Changed Into " + s + "!");
+		plugin.m.sendMessage(player, "Hotel Has Be Crated.");
 		blockCounter = 0;
 	}
 

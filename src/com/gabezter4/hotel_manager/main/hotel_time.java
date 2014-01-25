@@ -399,6 +399,7 @@ public final class hotel_time extends JavaPlugin   {
 				}
 				if(args[0].equalsIgnoreCase("generate")){
 					hg.generateCube((Player) sender, l1, l2);
+					return true;
 				}
 			return true;
 			}
