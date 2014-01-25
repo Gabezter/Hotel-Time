@@ -1,6 +1,7 @@
 
 package com.gabezter4.hotel_manager.main; 
 
+//Java Imports
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//Bukkit Imports
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -17,7 +19,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+//Interal Imports
 import com.gabezter4.hotel_manager.Generators.CubegeneraterProtect;
+import com.gabezter4.hotel_manager.Generators.Hotel_Generater;
 import com.gabezter4.hotel_manager.Listerners.Hotel_ManagerListener;
 
 public final class hotel_time extends JavaPlugin   {
@@ -27,6 +31,7 @@ public final class hotel_time extends JavaPlugin   {
 	public final Hotel_ManagerListener hml = new Hotel_ManagerListener(this);
 	public final CubegeneraterProtect cgp = new CubegeneraterProtect(this);
 	public final Methods m = new Methods();
+	public final Hotel_Generater hg = new Hotel_Generater(this);
 	
 	public ArrayList<Location> protectedBlocks = new ArrayList<Location>();
 	public Location l1 = null;
@@ -40,9 +45,7 @@ public final class hotel_time extends JavaPlugin   {
 	File config = null;
 	FileConfiguration nc = null;
 	@Override
-	public void onEnable() {
-		// TODO Insert logic to be performed when the plugin is enabled
-		
+	public void onEnable() {		
 		this.warning = new File(this.getDataFolder(), "hotel.yml");
 		this.nw = YamlConfiguration.loadConfiguration(warning);
 		this.config = new File(this.getDataFolder(), "config.yml");
@@ -70,7 +73,6 @@ public final class hotel_time extends JavaPlugin   {
 
 	@Override
 	public void onDisable() {
-		// TODO Insert logic to be performed when the plugin is disabled
 	}
     private String fileName;
     private JavaPlugin plugin;
@@ -194,62 +196,62 @@ public final class hotel_time extends JavaPlugin   {
 															sender.sendMessage(ChatColor.RED + "Only 10 rooms are allowed per building.");
 														}else if(nw.getString(args[2]  + b + "1" + r , "10") == null){
 															nw.set(args[2]  + b + "1" + r , "10");
-															nw.set(args[2] + b + "1" + r + "10.corner1", this.l1);
-															nw.set(args[2] + b + "1" + r + "10.corner2", this.l2);
+															nw.set(args[2] + b + "1" + r + "10.corner1", this.m.showBlockCoords(this.l1));
+															nw.set(args[2] + b + "1" + r + "10.corner2", this.m.showBlockCoords(this.l2));
 															sender.sendMessage(ChatColor.AQUA + "Room Count: 10/10");
 														}
 														}else if(nw.getString(args[2]  + b + "1" + r , "9") == null){
 															nw.set(args[2]  + b + "1" + r , "9");
-															nw.set(args[2] + b + "1" + r + "9.corner1", this.l1);
-															nw.set(args[2] + b + "1" + r + "9.corner2", this.l2);
+															nw.set(args[2] + b + "1" + r + "9.corner1", this.m.showBlockCoords(this.l1));
+															nw.set(args[2] + b + "1" + r + "9.corner2", this.m.showBlockCoords(this.l2));
 															sender.sendMessage(ChatColor.AQUA + "Room Count: 9/10");
 														}
 													}else if(nw.getString(args[2]  + b + "1" + r , "8") == null){
 														nw.set(args[2]  + b + "1" + r , "8");
-														nw.set(args[2] + b + "1" + r + "8.corner1", this.l1);
-														nw.set(args[2] + b + "1" + r + "8.corner2", this.l2);
+														nw.set(args[2] + b + "1" + r + "8.corner1", this.m.showBlockCoords(this.l1));
+														nw.set(args[2] + b + "1" + r + "8.corner2", this.m.showBlockCoords(this.l2));
 														sender.sendMessage(ChatColor.AQUA + "Room Count: 8/10");
 													}
 												}else if(nw.getString(args[2]  + b + "1" + r , "7") == null){
 													nw.set(args[2]  + b + "1" + r , "7");
-													nw.set(args[2] + b + "1" + r + "7.corner1", this.l1);
-													nw.set(args[2] + b + "1" + r + "7.corner2", this.l2);
+													nw.set(args[2] + b + "1" + r + "7.corner1", this.m.showBlockCoords(this.l1));
+													nw.set(args[2] + b + "1" + r + "7.corner2", this.m.showBlockCoords(this.l2));
 													sender.sendMessage(ChatColor.AQUA + "Room Count: 7/10");
 												}
 											}else if(nw.getString(args[2]  + b + "1" + r , "6") == null){
 												nw.set(args[2]  + b + "1" + r , "6");
-												nw.set(args[2] + b + "1" + r + "6.corner1", this.l1);
-												nw.set(args[2] + b + "1" + r + "6.corner2", this.l2);
+												nw.set(args[2] + b + "1" + r + "6.corner1", this.m.showBlockCoords(this.l1));
+												nw.set(args[2] + b + "1" + r + "6.corner2", this.m.showBlockCoords(this.l2));
 												sender.sendMessage(ChatColor.AQUA + "Room Count: 6/10");
 											}
 										}else if(nw.getString(args[2]  + b + "1" + r , "5") == null){
 											nw.set(args[2]  + b + "1" + r , "5");
-											nw.set(args[2] + b + "1" + r + "5.corner1", this.l1);
-											nw.set(args[2] + b + "1" + r + "5.corner2", this.l2);
+											nw.set(args[2] + b + "1" + r + "5.corner1", this.m.showBlockCoords(this.l1));
+											nw.set(args[2] + b + "1" + r + "5.corner2", this.m.showBlockCoords(this.l2));
 											sender.sendMessage(ChatColor.AQUA + "Room Count: 5/10");
 										}
 									}else if(nw.getString(args[2]  + b + "1" + r , "4") == null){
 										nw.set(args[2]  + b + "1" + r , "4");
-										nw.set(args[2] + b + "1" + r + "4.corner1", this.l1);
-										nw.set(args[2] + b + "1" + r + "4.corner2", this.l2);
+										nw.set(args[2] + b + "1" + r + "4.corner1", this.m.showBlockCoords(this.l1));
+										nw.set(args[2] + b + "1" + r + "4.corner2", this.m.showBlockCoords(this.l2));
 										sender.sendMessage(ChatColor.AQUA + "Room Count: 4/10");
 									}
 								}else if(nw.getString(args[2]  + b + "1" + r , "3") == null){
 									nw.set(args[2]  + b + "1" + r , "3");
-									nw.set(args[2] + b + "1" + r + "3.corner1", this.l1);
-									nw.set(args[2] + b + "1" + r + "3.corner2", this.l2);
+									nw.set(args[2] + b + "1" + r + "3.corner1", this.m.showBlockCoords(this.l1));
+									nw.set(args[2] + b + "1" + r + "3.corner2", this.m.showBlockCoords(this.l2));
 									sender.sendMessage(ChatColor.AQUA + "Room Count: 3/10");
 								}
 							}else if(nw.getString(args[2]  + b + "1" + r , "2") == null){
 								nw.set(args[2]  + b + "1" + r , "2");
-								nw.set(args[2] + b + "1" + r + "2.corner1", this.l1);
-								nw.set(args[2] + b + "1" + r + "2.corner2", this.l2);
+								nw.set(args[2] + b + "1" + r + "2.corner1", this.m.showBlockCoords(this.l1));
+								nw.set(args[2] + b + "1" + r + "2.corner2", this.m.showBlockCoords(this.l2));
 								sender.sendMessage(ChatColor.AQUA + "Room Count: 2/10");
 															}
 						}else if(nw.getString(args[2]  + b + "1" + r , "1") == null){
 							nw.set(args[2]  + b + "1" + r , "1");
-							nw.set(args[2] + b + "1" + r + "1.corner1", this.l1);
-							nw.set(args[2] + b + "1" + r + "1.corner2", this.l2);
+							nw.set(args[2] + b + "1" + r + "1.corner1", this.m.showBlockCoords(this.l1));
+							nw.set(args[2] + b + "1" + r + "1.corner2", this.m.showBlockCoords(this.l2));
 							sender.sendMessage(ChatColor.AQUA + "Room Count: 1/10");
 						}
 					try {
@@ -394,6 +396,9 @@ public final class hotel_time extends JavaPlugin   {
 				return true;}else {
 					sender.sendMessage(ChatColor.RED + "No Such Hotel Found");
 					sender.sendMessage(ChatColor.RED + "You tried to checkin to: " + args[1]);
+				}
+				if(args[0].equalsIgnoreCase("generate")){
+					hg.generateCube((Player) sender, l1, l2);
 				}
 			return true;
 			}
