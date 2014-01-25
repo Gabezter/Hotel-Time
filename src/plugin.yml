@@ -1,0 +1,50 @@
+main: com.gabezter4.hotel_manager.main.hotel_time
+name: Hotel Manager
+version: 0.1.0
+
+Commands:
+  hotel create:
+    description: Creates the Hotel Company.
+    usage: /hotel create
+    permission: hm.create
+    permission-message: You are not allowed to do this command.
+  hotel checkin:
+    description: Allows you to check in to a hotel.
+    usage: /hotel checkin
+    permission: hm.checkin
+    permission-message: You are not allowed to do this command.
+  hotel:
+    description: Main Command
+    usage: /hotel 
+    permission: hm.main
+    permission-message: You are not allowed to do this command.
+  hotel set:
+    description: Allows you to set rooms and builings
+    usage: /hotel set
+    permission: hm.set
+    permission-message: You are not allowed to do this command.
+  hotel help:
+    description: The help Command
+    usage: /hotel help
+    permission: hm.help
+    permission-message: You are not allowed to do this command.
+  hotel checkout:
+    description: Allows you to check out of a hotel.
+    usage: /hotel checkout
+    permission: hm.checkout
+    permission-message: You are not allowed to do this command.
+  hotel kick:
+    description: Allows you to kick a player.
+    usage: /hotel kick [player]
+    permission: hm.kick
+    permission-message: You are not allowed to do this command.
+  hotel admin:
+    description: Allows you to have all access all hotels.
+    usage: /hotel admin
+    permission: hm.admin
+    permission-message: You are not allowed to do this command.
+  hotel config:
+    description: Edits the config file.
+    usage: /hotel config
+    permission: hm.config
+    permission-message: You are not allowed to do this command.
