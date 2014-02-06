@@ -1,7 +1,7 @@
 
 package com.gabezter4.hotel_manager.main; 
 
-//Java Imports
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//Bukkit Imports
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -19,10 +18,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-//Interal Imports
 import com.gabezter4.hotel_manager.Generators.CubegeneraterProtect;
 import com.gabezter4.hotel_manager.Generators.Hotel_Generater;
 import com.gabezter4.hotel_manager.Listerners.Hotel_ManagerListener;
+
+
 
 public final class hotel_time extends JavaPlugin   {
 	
@@ -56,7 +56,7 @@ public final class hotel_time extends JavaPlugin   {
 			nc.addDefault("Allow Hotel Kicking", "false");
 			nc.options().copyDefaults(true);
 			try {
-				nw.save(warning);
+				nw.save(config);
 			} catch (IOException e) {e.printStackTrace();}
 		}
 		if (!warning.exists()) {
@@ -155,9 +155,8 @@ public final class hotel_time extends JavaPlugin   {
 					if(nc.get("Allow Hotel Kicking", true) != null){
 						sender.sendMessage(ChatColor.AQUA + args[1] + " has been kicked from the hotel!!");
 					}
-			}	return true;
-			}
-			
+			return true;}	
+		
 			if (args[0].equalsIgnoreCase("config")){
 				if (args[1]  == "Allow_Kicking"){
 					if (args[2] == "true"){
@@ -267,8 +266,7 @@ public final class hotel_time extends JavaPlugin   {
 					try {
 						nw.save(warning);
 					} catch (IOException e) {e.printStackTrace();}
-				return true;}	 
-			return true;
+				return true;}
 			}
 			if (args[0].equalsIgnoreCase("create")){
 				nw.set("Hotels", args[1]);
@@ -397,13 +395,14 @@ public final class hotel_time extends JavaPlugin   {
 					sender.sendMessage(ChatColor.RED + "No Such Hotel Found");
 					sender.sendMessage(ChatColor.RED + "You tried to checkin to: " + args[1]);
 				}
-				if(args[0].equalsIgnoreCase("generate")){
-					hg.generateCube((Player) sender, l1, l2);
-					return true;
-				}
 			return true;
 			}
 			
+			if(args[0].equalsIgnoreCase("generate")){
+				hg.generateCube((Player) sender, l1, l2);
+				return true;
+			}
+	}
 	return false;	
 	}
 }
