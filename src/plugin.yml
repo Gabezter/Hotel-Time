@@ -2,9 +2,61 @@ main: com.gabezter4.hotel_manager.main.hotel_time
 name: Hotel Manager
 version: 0.1.0
 
-Commands:
-  hotel:
+commands:
+  hm:
     description: Main Command
-    usage: /hotel 
+    usage: /hm
     permission: hm.main
     permission-message: You are not allowed to do this command.
+  hmkick:
+    description: Main Command
+    usage: /hmkick
+    permission: hm.main
+    permission-message: You are not allowed to do this command.
+  hmcheckin:
+    description: Main Command
+    usage: /hmcheckin
+    permission: hm.checkin
+    permission-message: You are not allowed to do this command.
+  hmcheckout:
+    description: Main Command
+    usage: /hcheckout 
+    permission: hm.checkout
+    permission-message: You are not allowed to do this command.
+  hmset:
+    description: Main Command
+    usage: /hmset
+    permission: hm.set
+    permission-message: You are not allowed to do this command.
+  hmcreate:
+    description: Main Command
+    usage: /hmcreate 
+    permission: hm.create
+    permission-message: You are not allowed to do this command.
+  hmgenerate:
+    description: Main Command
+    usage: /hmgenerate
+    permission: hm.generate
+    permission-message: You are not allowed to do this command.
+  hmconfig:
+    description: Main Command
+    usage: /hmconfig
+    permission: hm.config
+    permission-message: You are not allowed to do this command.
+permissions:
+  hm.main:
+    default: op
+  hm.kick:
+    default: op
+  hm.checkin:
+    default: op
+  hm.checkout:
+    default: op
+  hm.checkin:
+    default: op
+  hm.create:
+    default: op
+  hm.generate:
+    default: op
+  hm.config:
+    default: op

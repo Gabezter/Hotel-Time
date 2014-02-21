@@ -4,9 +4,7 @@ package com.gabezter4.hotel_manager.main;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.ChatColor;
@@ -39,11 +37,11 @@ public final class hotel_time extends JavaPlugin   {
 
 	public int ID = 0;
 	
-	File warning = null;
-	FileConfiguration nw = null;
+	public File warning = null;
+	public FileConfiguration nw = null;
 
-	File config = null;
-	FileConfiguration nc = null;
+	public File config = null;
+	public FileConfiguration nc = null;
 	@Override
 	public void onEnable() {		
 		this.warning = new File(this.getDataFolder(), "hotel.yml");
@@ -74,52 +72,9 @@ public final class hotel_time extends JavaPlugin   {
 	@Override
 	public void onDisable() {
 	}
-    private String fileName;
-    private JavaPlugin plugin;
-    
-    private File HotelFile;
-    private FileConfiguration fileConfiguration;
  
-    public void reloadHotel() {        
-        fileConfiguration = YamlConfiguration.loadConfiguration(HotelFile);
- 
-        // Look for defaults in the jar
-        InputStream defConfigStream = plugin.getResource(fileName);
-        if (defConfigStream != null) {
-            YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-            fileConfiguration.setDefaults(defConfig);
-        }
-    }
- 
-    public FileConfiguration getHotel() {
-        if (fileConfiguration == null) {
-            this.reloadHotel();
-        }
-        return fileConfiguration;
-    }
- 
-    public void saveHotel() {
-        if (fileConfiguration == null || HotelFile == null) {
-            return;
-        } else {
-            try {
-                getHotel().save(HotelFile);
-            } catch (IOException ex) {
-                plugin.getLogger().log(Level.SEVERE, "Could not save Hotel to " + HotelFile, ex);
-            }
-        }
-    }
-    
-    public void saveDefaultHotel() {
-        if (!HotelFile.exists()) {            
-            this.plugin.saveResource(fileName, false);
-        }
-    }
- 
-
-		
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("hotel")){ // If the player typed /hotel create then do the following...
+		if (cmd.getName().equalsIgnoreCase("hm")){ // If the player typed /hotel create then do the following...
 
 			sender.sendMessage(ChatColor.DARK_GREEN + "This is the Main Command. Do /hotel help for the help page.");
 		    sender.sendMessage(ChatColor.GREEN + "Version 0.1.0");
@@ -133,7 +88,6 @@ public final class hotel_time extends JavaPlugin   {
 				sender.sendMessage(ChatColor.DARK_RED + "|/hotel ahelp - Displays the help page for admins.                                |");
 				sender.sendMessage(ChatColor.DARK_GREEN + "-|------------------------------End of the Help Page-------------------------------|-");
 		    return true;}
-		    
 		    if (args[1].equalsIgnoreCase("ahelp")){
 		    	 sender.sendMessage(ChatColor.DARK_GREEN + "-|------------------------------Hotel-Time Admin Help Page-----------------------------|-");
 					sender.sendMessage(ChatColor.DARK_RED + "|/hotel - Main command.                                                               |");
@@ -145,28 +99,26 @@ public final class hotel_time extends JavaPlugin   {
 					sender.sendMessage(ChatColor.DARK_RED + "|/hotel set building - Creates the building of the hotel with the world edit commands.|");
 					sender.sendMessage(ChatColor.DARK_RED + "|/hotel set room - Creates a room of the hotel with the world edit commands.          |");
 					sender.sendMessage(ChatColor.DARK_GREEN + "-|--------------------------------End of the Help Page---------------------------------|-");
-		    return true;}
-			
-
-			if (args[0].equalsIgnoreCase("kick")){
+		    return true;}return true;}
+		
+			if (cmd.getName().equalsIgnoreCase("hmkick")){
 				if(nc.get("Allow Hotel Kicking", false) != null){
 				sender.sendMessage(ChatColor.AQUA + "Kicking people from the hotel is not allowed!!");
 				}else
 					if(nc.get("Allow Hotel Kicking", true) != null){
 						sender.sendMessage(ChatColor.AQUA + args[1] + " has been kicked from the hotel!!");
 					}
-			return true;}	
-		
-			if (args[0].equalsIgnoreCase("config")){
-				if (args[1]  == "Allow_Kicking"){
-					if (args[2] == "true"){
+			return true;}
+			if (cmd.getName().equalsIgnoreCase("hmconfig")){
+				if (args[1].equalsIgnoreCase("Allow_Kicking")){
+					if (args[2].equalsIgnoreCase("true")){
 						getConfig().set("Allow Hotel Kicking", true);
 						sender.sendMessage(ChatColor.AQUA + "Kicking from Hotels is now allowed!!");
 						try {
 							nc.save(config);
 						} catch (IOException e){e.printStackTrace();}
 				return true;}
-				else if (args[2] == "false"){
+				else if (args[2].equalsIgnoreCase("false")){
 						getConfig().set("Allow Hotel Kicking", false);
 						sender.sendMessage(ChatColor.AQUA + "Kicking from Hotels is now not allowed!!");
 						try {
@@ -180,7 +132,7 @@ public final class hotel_time extends JavaPlugin   {
 			String o = ".occupied";
 			String t = "true";
 			String f = "false";
-			if (args[0].equalsIgnoreCase("set")){
+			if (cmd.getName().equalsIgnoreCase("hmset")){
 				if (args[1].equalsIgnoreCase("room")){
 					if(nw.getString(args[2]  + b + "1" + r , "1") !=null){
 						if(nw.getString(args[2]  + b + "1" + r , "2") !=null){
@@ -268,7 +220,7 @@ public final class hotel_time extends JavaPlugin   {
 					} catch (IOException e) {e.printStackTrace();}
 				return true;}
 			}
-			if (args[0].equalsIgnoreCase("create")){
+			if (cmd.getName().equalsIgnoreCase("hmcreate")){
 				nw.set("Hotels", args[1]);
 				sender.sendMessage(ChatColor.RED +"The Hotel "+ ChatColor.BLUE + args[1] + ChatColor.RED + " has been created.");
 				try {
@@ -277,7 +229,7 @@ public final class hotel_time extends JavaPlugin   {
 				return true;
 			}
 			
-			if (args[0].equalsIgnoreCase("checkout")){
+			if (cmd.getName().equalsIgnoreCase("hmcheckout")){
 				String player = ((Player)sender).getName();
 				if (args[1].equalsIgnoreCase(nw.getString(args[1]))){
 					if(nw.getString(args[1] + b + "1" + r + "1" + o, t) != null){
@@ -311,7 +263,7 @@ public final class hotel_time extends JavaPlugin   {
 									  		sender.sendMessage(ChatColor.DARK_AQUA + "You are now CheckOut.");
 									  	}
 									  	}else if(nw.getString(args[1] + b + "1" + r + "6" + o, t) != null){
-										  	if(nw.getString(args[1] + b + "1" + r + "6" + o + ".by", player ) !=null){
+									  	if(nw.getString(args[1] + b + "1" + r + "6" + o + ".by", player ) !=null){
 										  		nw.set(args[1] + b + "1" + r + "6" + o + ".by", null);
 										  		nw.set(args[1] + b + "1" + r + "6" + o, f );
 										  		sender.sendMessage(ChatColor.DARK_AQUA + "You are now CheckOut.");
@@ -345,7 +297,7 @@ public final class hotel_time extends JavaPlugin   {
 					}
 			return true;
 			}
-			if (args[0].equalsIgnoreCase("checkin")){
+			if (cmd.getName().equalsIgnoreCase("hmcheckin")){
 				if (args[1].equalsIgnoreCase(nw.getString(args[1]))){
 					if(nw.getString(args[1] + b + "1" + r + "1" + o, t) != null){
 						if(nw.getString(args[1] + b + "1" + r + "2" + o, t) != null){
@@ -388,21 +340,20 @@ public final class hotel_time extends JavaPlugin   {
 													}else if(nw.getString(args[1] + b + "1" + r +"1" + o, f) != null){
 													nw.set(args[1] + b + "1" + r + "1" + o, t);
 													nw.set(args[1] + b + "1" + r + "1" + o + ".by", sender );
-													
 													}}
 										
-				return true;}else {
+				return true;
+				}else{
 					sender.sendMessage(ChatColor.RED + "No Such Hotel Found");
 					sender.sendMessage(ChatColor.RED + "You tried to checkin to: " + args[1]);
 				}
 			return true;
 			}
-			
-			if(args[0].equalsIgnoreCase("generate")){
+			if(cmd.getName().equalsIgnoreCase("hmgenerate")){
+				sender.sendMessage(ChatColor.WHITE + "null");
 				hg.generateCube((Player) sender, l1, l2);
 				return true;
 			}
-	}
 	return false;	
 	}
 }
