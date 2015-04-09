@@ -31,6 +31,7 @@ public class Hotel_ManagerListener implements Listener {
 			try{
 				plugin.l1 = event.getClickedBlock().getLocation();
 				plugin.m.sendMessage(player, "Postion 1:" + plugin.m.showBlockCoords(plugin.l1));
+				plugin.pos1 = true;
 				event.setCancelled(true);
 			}catch(Exception e) {
 				plugin.m.sendMessage(player, "Plugin Failed To Create Waypoint!");
@@ -41,6 +42,7 @@ public class Hotel_ManagerListener implements Listener {
 			try{
 				plugin.l1 = event.getClickedBlock().getLocation();
 				plugin.m.sendMessage(player, "Postion 2:" + plugin.m.showBlockCoords(plugin.l2));
+				plugin.pos2 = true;
 				event.setCancelled(true);
 			}catch(Exception e) {
 				plugin.m.sendMessage(player, "Plugin Failed To Create Waypoint!");

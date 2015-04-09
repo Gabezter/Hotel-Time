@@ -3,44 +3,44 @@ name: Hotel Manager
 version: 0.1.0
 
 commands:
-  hm:
+  hotel:
     description: Main Command
-    usage: /hm
+    usage: /hotel
     permission: hm.main
     permission-message: You are not allowed to do this command.
-  hmkick:
+  hotelkick:
     description: Main Command
-    usage: /hmkick
+    usage: /hotelkick
     permission: hm.main
     permission-message: You are not allowed to do this command.
-  hmcheckin:
+  hotelcheckin:
     description: Main Command
-    usage: /hmcheckin
+    usage: /hotelcheckin
     permission: hm.checkin
     permission-message: You are not allowed to do this command.
-  hmcheckout:
+  hotelcheckout:
     description: Main Command
-    usage: /hcheckout 
+    usage: /hotel checkout 
     permission: hm.checkout
     permission-message: You are not allowed to do this command.
-  hmset:
+  hotelset:
     description: Main Command
-    usage: /hmset
+    usage: /hotelset
     permission: hm.set
     permission-message: You are not allowed to do this command.
-  hmcreate:
+  hotelcreate:
     description: Main Command
-    usage: /hmcreate 
+    usage: /hotelcreate 
     permission: hm.create
     permission-message: You are not allowed to do this command.
-  hmgenerate:
+  hotelgenerate:
     description: Main Command
-    usage: /hmgenerate
+    usage: /hotelgenerate
     permission: hm.generate
     permission-message: You are not allowed to do this command.
-  hmconfig:
+  hotelconfig:
     description: Main Command
-    usage: /hmconfig
+    usage: /hotelconfig
     permission: hm.config
     permission-message: You are not allowed to do this command.
 permissions:
